@@ -8,11 +8,29 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      fontFamily: {
+        'jakarta-sans': 'Plus Jakarta Sans'
       },
+      colors: {
+        'light-green': '#58936E',
+        'freshGreen': '#AFC543',
+        'lite-dark-gray': '#70737A',
+        'dark-gray': '#323741',
+        'dark-green': '#116530',
+        'lite-gray': '#FFFAE8',
+        'light-yellow': '#FFCC1D',
+        'lightOrange': '#F7982D',
+        'lightRed': '#E4504A',
+        'blackLite': '#323741',
+      },
+      margin: {
+        content: '151px',
+        tablet: '75px',
+        mobile: '20px'
+      },
+      screens: {
+        mobile: '450px'
+      }
     },
   },
   plugins: [],
