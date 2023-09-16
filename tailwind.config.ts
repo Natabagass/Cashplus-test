@@ -30,7 +30,11 @@ const config: Config = {
       },
       screens: {
         mobile: '450px'
-      }
+      },
+      boxShadow: {
+        "full": '5px 5px 15px 15px  rgb(0 0 0 / 0.05)',
+        'background': '0 35px 35px rgba(159, 0 59, 1)',
+      },
     },
   },
   plugins: [],

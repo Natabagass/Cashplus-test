@@ -3,7 +3,6 @@ import Keuntungan from '@/section/landing/keuntungan'
 import VisiMisi from '@/section/landing/visiMisi'
 import JoinUs from '@/section/landing/joinUs'
 
-
 const Landing = () => {
   return (
     <div>

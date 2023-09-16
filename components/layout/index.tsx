@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import Navbar from "../partials/navbar";
-import Footer from "../partials/footer";
+import dynamic from "next/dynamic";
+const Navbar = dynamic(() => import('../partials/navbar'), { ssr: false })
 
 interface LayoutProps {
     children: ReactNode;
@@ -16,10 +16,6 @@ export const Layout = ({ children }: LayoutProps) => {
             <main>
                 {children}
             </main>
-
-            <footer>
-                <Footer />
-            </footer>
         </div>
     )
 }

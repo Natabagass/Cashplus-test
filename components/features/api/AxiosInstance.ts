@@ -1,12 +1,11 @@
 import axios from "axios";
+import { getCookie } from "cookies-next";
 
 const AxiosInstance = () => {
-    const token = localStorage.getItem('auth')
     const res = axios.create({
         baseURL: 'https://infruit.ruangbaca-fisipedu.my.id/api/',
         headers: {
             'Content-Type': 'application/json,',
-            'Authorization': `Bearer ${token}`,
         }
     })
 

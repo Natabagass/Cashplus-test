@@ -5,6 +5,8 @@ import Logo from "@/img/logoInfruit.png"
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import postLogin from "@/features/service/auth/postLogin";
+import { setCookie } from "cookies-next";
 
 const Masuk = () => {
     const router = useRouter()
@@ -28,34 +30,35 @@ const Masuk = () => {
         const { username, password } = forms
         setIsLoading(true)
 
-        // try {
-        //     const res = await postLogin(username, password)
-        //     if (res.status === 200) {
-        //         setTimeout(() => {
-        //             router.push('/')
-        //         }, 1000);
-        //     }
+        try {
+            const res = await postLogin(username, password)
+            if (res.status === 200) {
+                setCookie('auth', res.data?.data.token)
+                setTimeout(() => {
+                    router.push('/')
+                }, 200);
+            }
 
-        //     if (res.response.data.status === "error") {
-        //         console.log(res.response.data.message.password)
-        //         const errMsg = {
-        //             password: res.response.data.message.password,
-        //             username: res.response.data.message.username,
-        //             akun: res.response.data.message
-        //         }
-        //         setError(prev => ({
-        //             ...prev,
-        //             password: errMsg.password,
-        //             username: errMsg.username,
-        //             akun: errMsg.akun
-        //         }))
-        //         setIsLoading(false)
-        //         return
-        //     }
-        // } catch (err) {
-        //     console.log(err)
-        //     setIsLoading(false)
-        // }
+            if (res.response.data?.status === "error") {
+                console.log(res.response.data?.message.password)
+                const errMsg = {
+                    password: res.response.data?.message.password,
+                    username: res.response.data?.message.username,
+                    akun: res.response.data?.message
+                }
+                setError(prev => ({
+                    ...prev,
+                    password: errMsg.password,
+                    username: errMsg.username,
+                    akun: errMsg.akun
+                }))
+                setIsLoading(false)
+                return
+            }
+        } catch (err) {
+            console.log(err)
+            setIsLoading(false)
+        }
     }
     return (
         <div className="flex flex-row font-jakarta-sans overflow-hidden w-full">
@@ -80,7 +83,7 @@ const Masuk = () => {
                     <div className='mx-[40px] my-[70px]'>
                         <div className='flex flex-row w-full justify-between'>
                             <h2 className='font-semibold text-[20px] text-dark-gray lg:text-[28px]'>Masuk</h2>
-                            <a href="/signup" className='text-light-green font-semibold text-[18px] flex items-center'>Daftar</a>
+                            <Link href="/daftar" className='text-light-green font-semibold text-[18px] flex items-center'>Daftar</Link>
                         </div>
 
                         <div className='mt-8'>
@@ -89,7 +92,7 @@ const Masuk = () => {
                                 type="text"
                                 name='username'
                                 onChange={e => setForms({ ...forms, username: e.target.value })}
-                                className='border-2 rounded-xl mt-2 border-lite-dark-gray'
+                                className='border-2 rounded-xl mt-2 border-lite-dark-gray w-full p-3'
                                 required
                                 placeholder='Ketik Disini'
                             />
@@ -103,7 +106,7 @@ const Masuk = () => {
                                     type={passwordShown ? "text" : "password"}
                                     name='password'
                                     onChange={e => setForms({ ...forms, password: e.target.value })}
-                                    className='border-2 rounded-xl mt-2 border-lite-dark-gray'
+                                    className='border-2 rounded-xl mt-2 border-lite-dark-gray w-full p-3'
                                     required
                                     placeholder='Ketik Disini'
                                 />
@@ -118,7 +121,7 @@ const Masuk = () => {
 
                         <a href="" className='text-light-green text-[16px] lg:text-[19px] font-semibold flex justify-end mt-5'>Lupa kata sandi?</a>
                         <button
-                            className='mt-5 w-full text-lite-gray bg-dark-green'
+                            className='mt-5 w-full text-lite-gray bg-dark-green p-3 rounded-lg'
                             onClick={handleLogin}
                         >Masuk</button>
                         <h3 className='text-[12px] mt-5 justify-center flex'>Butuh bantuan? &nbsp; <a href="" className='text-dark-green font-bold'>Hubungi inFruit Care</a></h3>

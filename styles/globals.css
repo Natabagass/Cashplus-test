@@ -3,3 +3,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.active {
+    background-color: #AFC543;
+    border-radius: 20%;
+    color: #0F5B2B;
+    font-weight: 700;
+}
+
+
+.page-item {
+    list-style: none;
+    padding: 5px 17px;
+    height: 31.5px;
+    width: 31.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2px;
+}

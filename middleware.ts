@@ -1,10 +1,17 @@
-import withAuth from "@/withAuth";
+import { getCookie, hasCookie } from "cookies-next";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-export function mainMiddleware(req: NextRequest) {
-    const res = NextResponse.next();
-    return res;
+export function middleware(req: NextRequest) {
+    const cookie = req.cookies.get('auth')
+
+    if (cookie) {
+        return NextResponse.next()
+    } else {
+        return NextResponse.redirect(new URL("/", req.url));
+    }
 }
 
-export default withAuth(mainMiddleware, ["/home", "/product", "/history", "/cart"])
+export const config = {
+    matcher: ['/home', '/produk', '/history', '/cart', '/produk/[name]']
+}

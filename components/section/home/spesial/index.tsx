@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CiCoffeeCup, CiDiscount1, CiMedal } from "react-icons/ci"
+import { CiDiscount1 } from "react-icons/ci"
 import { BiCategoryAlt } from "react-icons/bi"
 import { GiFruitBowl } from "react-icons/gi";
 
