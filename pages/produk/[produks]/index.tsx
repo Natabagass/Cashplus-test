@@ -7,13 +7,13 @@ import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from "next"
 const Produks: NextPage = ({ product }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     return (
         <>
-            <div className="flex flex-col w-full mx-mobile md:mx-tablet mt-32">
+            <div className="flex flex-col w-full mt-32">
                 <div className="flex flex-col lg:flex-row justify-between">
                     <section id="descProduct">
                         <Desc {...product} />
                     </section>
 
-                    <section id="cardBuy">
+                    <section id="cardBuy" className="mx-mobile md:mx-tablet">
                         <BuyCard {...product} />
                     </section>
                 </div>

@@ -3,7 +3,7 @@ import Icon from "@/img/ulasanImage.png"
 
 const UlasanPembeli = () => {
     return (
-        <div className="text-blackLite my-12">
+        <div className="text-blackLite my-12 mx-mobile md:mx-tablet">
             <h1 className="font-bold">Ulasan Pembeli</h1>
 
             <div className="rounded-3xl w-full lg:w-[75%] shadow-full mt-10">
