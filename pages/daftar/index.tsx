@@ -6,8 +6,11 @@ import Logo from "@/img/logoInfruit.png"
 import signupImage from "@/img/signupImage.png"
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import postSignup from "@/features/service/auth/postDaftar";
+import { NextPage } from "next";
+import Input from "@/input";
+import Button from "@/button";
 
-const Daftar = () => {
+const Daftar: NextPage = () => {
     const router = useRouter()
     const [passwordShown, setPasswordShown] = useState(false);
     const [forms, setForms] = useState({
@@ -76,7 +79,7 @@ const Daftar = () => {
                     />
                 </div>
 
-                <div className="flex flex-col justify-center mx-auto w-[90%] my-[20px] lg:w-[40%] xl:w-[30%]">
+                <div className="flex flex-col justify-center mx-auto w-[90%] my-text-xl lg:w-[40%] xl:w-[30%]">
                     <Link href={'/'}>
                         <Image
                             src={Logo}
@@ -85,12 +88,12 @@ const Daftar = () => {
                         />
                     </Link>
                     <div className='flex flex-col rounded-xl shadow-full mt-8'>
-                        <div className='mx-[40px] my-[40px]'>
-                            <h2 className='font-semibold text-[20px] text-dark-gray text-center lg:text-[28px]'>Daftar Sekarang</h2>
-                            <h1 className="text-center text-[20px] text-dark-gray">Sudah punya akun inFruit?&nbsp; <Link href='/masuk' className="font-semibold text-light-green">Masuk</Link></h1>
+                        <div className='mx-10 my-10'>
+                            <h2 className='font-semibold text-xl text-dark-gray text-center lg:text-3xl'>Daftar Sekarang</h2>
+                            <h1 className="text-center text-xl text-dark-gray">Sudah punya akun inFruit?&nbsp; <Link href='/masuk' className="font-semibold text-light-green">Masuk</Link></h1>
                             <div className='mt-8'>
-                                <h3 className='text-dark-green text-[14px] ml-2 font-semibold'>Userame</h3>
-                                <input
+                                <h3 className='text-dark-green text-sm ml-2 font-semibold'>Userame</h3>
+                                <Input
                                     type="text"
                                     name='username'
                                     onChange={e => setForms({ ...forms, username: e.target.value })}
@@ -98,13 +101,13 @@ const Daftar = () => {
                                     required
                                     placeholder='Ketik Disini'
                                 />
-                                <span className="my-2 text-red-500 text-[13px] flex justify-center w-full">{error.username}</span>
+                                <span className="my-2 text-red-500 text-sm flex justify-center w-full">{error.username}</span>
                             </div>
 
                             <div className='mt-2'>
-                                <h3 className='text-dark-green text-[14px] ml-2 font-semibold'>Password</h3>
+                                <h3 className='text-dark-green text-sm ml-2 font-semibold'>Password</h3>
                                 <div className="relative flex items-center">
-                                    <input
+                                    <Input
                                         type={passwordShown ? "text" : "password"}
                                         name='password'
                                         onChange={e => setForms({ ...forms, password: e.target.value })}
@@ -116,12 +119,12 @@ const Daftar = () => {
                                         {!passwordShown ? <AiOutlineEyeInvisible className="absolute right-3 text-[25px] mt-1 pr-1" /> : <AiOutlineEye className="absolute right-3 text-[25px] mt-1 pr-1" />}
                                     </button>
                                 </div>
-                                <span className="my-2 text-red-500 text-[13px] flex justify-center w-full">{error.password}</span>
+                                <span className="my-2 text-red-500 text-sm flex justify-center w-full">{error.password}</span>
                             </div>
 
                             <div className='mt-2'>
-                                <h3 className='text-dark-green text-[14px] ml-2 font-semibold'>Email</h3>
-                                <input
+                                <h3 className='text-dark-green text-sm ml-2 font-semibold'>Email</h3>
+                                <Input
                                     type="text"
                                     name='email'
                                     onChange={e => setForms({ ...forms, email: e.target.value })}
@@ -129,12 +132,12 @@ const Daftar = () => {
                                     required
                                     placeholder='Ketik Disini'
                                 />
-                                <span className="my-2 text-red-500 text-[13px] flex justify-center w-full">{error.email}</span>
+                                <span className="my-2 text-red-500 text-sm flex justify-center w-full">{error.email}</span>
                             </div>
 
                             <div className='mt-2'>
-                                <h3 className='text-dark-green text-[14px] ml-2 font-semibold'>Nomor Telepon</h3>
-                                <input
+                                <h3 className='text-dark-green text-sm ml-2 font-semibold'>Nomor Telepon</h3>
+                                <Input
                                     type="text"
                                     name='phone'
                                     onChange={e => setForms({ ...forms, phone: e.target.value })}
@@ -142,15 +145,15 @@ const Daftar = () => {
                                     required
                                     placeholder='Ketik Disini'
                                 />
-                                <span className="my-2 text-red-500 text-[13px] flex justify-center w-full">{error.phone}</span>
+                                <span className="my-2 text-red-500 text-sm flex justify-center w-full">{error.phone}</span>
                             </div>
 
-                            <button
+                            <Button
                                 className='mt-5 w-full text-lite-gray bg-dark-green p-3 rounded-lg'
                                 onClick={handleSignup}
-                            >Daftar</button>
-                            <h3 className='text-[13px] text-lite-dark-gray mt-5 justify-center flex'>Dengan mendaftar, saya menyetujui</h3>
-                            <span className='text-[13px] text-light-green font-semibold justify-center flex'>Syarat dan Ketentuan &nbsp; <h4 className="text-lite-dark-gray font-normal">serta</h4> &nbsp; Kebijakan Privasi</span>
+                            >Daftar</Button>
+                            <h3 className='text-sm text-lite-dark-gray mt-5 justify-center flex'>Dengan mendaftar, saya menyetujui</h3>
+                            <span className='text-sm text-light-green font-semibold justify-center flex'>Syarat dan Ketentuan &nbsp; <h4 className="text-lite-dark-gray font-normal">serta</h4> &nbsp; Kebijakan Privasi</span>
                         </div>
                     </div>
                 </div>

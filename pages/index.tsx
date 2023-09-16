@@ -2,8 +2,9 @@ import Hero from '@/section/landing/hero'
 import Keuntungan from '@/section/landing/keuntungan'
 import VisiMisi from '@/section/landing/visiMisi'
 import JoinUs from '@/section/landing/joinUs'
+import { NextPage } from 'next'
 
-const Landing = () => {
+const Landing: NextPage = () => {
   return (
     <div>
       {/* Section Hero */}

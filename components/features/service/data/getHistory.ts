@@ -1,11 +1,16 @@
 import AxiosInstance from "@/features/api/AxiosInstance"
 import { getCookie } from "cookies-next"
 
-const getBuah = async () => {
+const getHistory = async () => {
     const axiosInstance = AxiosInstance()
+    const token =  getCookie('auth')
 
     try {
-        const result = await axiosInstance.get('product' )
+        const result = await axiosInstance.get('product/history', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         .then(res => {
             return res
         })
@@ -19,4 +24,4 @@ const getBuah = async () => {
     }
 }
 
-export default getBuah;
+export default getHistory;

@@ -3,8 +3,9 @@ import ListBuah from "@/section/home/buah";
 import HeroHome from "@/section/home/hero"
 import Spesial from "@/section/home/spesial";
 import getBuah from "@/features/service/data/getBuah";
+import { NextPage } from "next";
 
-const Home = () => {
+const Home: NextPage = () => {
     const { data, error } = useQuery('products', getBuah);
 
     return (

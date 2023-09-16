@@ -1,11 +1,11 @@
 import AxiosInstance from "@/features/api/AxiosInstance"
 import { getCookie } from "cookies-next"
 
-const getBuah = async () => {
+const getPerProduct = async (id: string | number | string[] | undefined) => {
     const axiosInstance = AxiosInstance()
 
     try {
-        const result = await axiosInstance.get('product' )
+        const result = await axiosInstance.get(`product/${id}`)
         .then(res => {
             return res
         })
@@ -19,4 +19,4 @@ const getBuah = async () => {
     }
 }
 
-export default getBuah;
+export default getPerProduct;

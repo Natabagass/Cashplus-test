@@ -3,7 +3,7 @@ import { BsArrowUp, BsArrowDown } from "react-icons/bs"
 
 const Filter = () => {
     return (
-        <div className="font-jakarta-sans sticky top-24 shadow-full h-full py-5 rounded-xl">
+        <div className="font-jakarta-sans sticky top-24 shadow-full h-[500px] py-5 rounded-xl">
             <div className="px-5">
                 <h1 className="font-bold px-5">Kategori</h1>
                 <div className="flex flex-col text-sm px-10 text-lite-dark-gray font-semibold w-full text-left">

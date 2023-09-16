@@ -1,3 +1,4 @@
+import { CartProvider } from "@/context/cartContext";
 import "@/globals.css"
 import { Layout } from "@/layout"
 import type { AppProps } from 'next/app'
@@ -7,9 +8,11 @@ const queryClient = new QueryClient();
 export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <CartProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </CartProvider>
     </QueryClientProvider>
   )
 }

@@ -5,6 +5,10 @@ import type { NextRequest } from "next/server";
 export function middleware(req: NextRequest) {
     const cookie = req.cookies.get('auth')
 
+    if (cookie && req.nextUrl.pathname.startsWith("/masuk")) {
+        return NextResponse.redirect(new URL("/", req.url))
+    }
+
     if (cookie) {
         return NextResponse.next()
     } else {
@@ -13,5 +17,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-    matcher: ['/home', '/produk', '/history', '/cart', '/produk/[name]']
+    matcher: ['/history', '/payment']
 }
