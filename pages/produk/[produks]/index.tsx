@@ -2,11 +2,19 @@ import getPerProduct from "@/features/service/data/getPerProduct";
 import BuyCard from "@/section/perProduct/buyCard";
 import Desc from "@/section/perProduct/desc";
 import UlasanPembeli from "@/section/perProduct/ulasanPembeli";
+import HeadSeo from "@/utils/head";
 import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from "next";
 
 const Produks: NextPage = ({ product }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     return (
         <>
+            <HeadSeo
+                siteTitle="InFruit"
+                title={product.name}
+                description="Mari kurangi food waste"
+                imags={product.img}
+                canonical={''}
+            />
             <div className="flex flex-col w-full mt-32">
                 <div className="flex flex-col lg:flex-row justify-between">
                     <section id="descProduct">

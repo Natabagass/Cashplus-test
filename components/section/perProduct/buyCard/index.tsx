@@ -1,4 +1,5 @@
 import Button from "@/button"
+import { useCart } from "@/context/cartContext"
 import postBuy from "@/features/service/data/postBuy"
 import { Props, PropsKategori } from "@/interface/data/fruit"
 import { rupiahFormatter } from "@/utils/rupiahFormatter"
@@ -68,8 +69,9 @@ const BuyCard = (props: Props) => {
                     <h3 className="font-medium">Subtotal</h3>
                     <h1 className="font-bold text-2xl">{quantity > 0 ? rupiahFormatter(sum) : rupiahFormatter(0)}</h1>
                 </div>
-                <div className="flex w-full my-4">
+                <div className="flex flex-col w-full my-4">
                     <Button type="submit" isLoading={isLoading} onClick={handleBuy} className="border-4 rounded-xl font-semibold w-full p-1 text-dark-green hover:bg-dark-green hover:text-white border-dark-green">Beli Sekarang</Button>
+                    <Button type="button" isLoading={isLoading} className="border-4 rounded-xl mt-2 font-semibold w-full p-1 bg-dark-green text-white hover:bg-white hover:text-dark-green border-dark-green">Tambahkan Keranjang</Button>
                 </div>
             </div>
         </div>

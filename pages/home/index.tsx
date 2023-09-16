@@ -4,12 +4,20 @@ import HeroHome from "@/section/home/hero"
 import Spesial from "@/section/home/spesial";
 import getBuah from "@/features/service/data/getBuah";
 import { NextPage } from "next";
+import HeadSeo from "@/utils/head";
 
 const Home: NextPage = () => {
     const { data, error } = useQuery('products', getBuah);
 
     return (
-        <div>
+        <>
+            <HeadSeo
+                siteTitle="InFruit"
+                title='Home'
+                description="Mari kurangi food waste"
+                imags={''}
+                canonical={'/home'}
+            />
             <section id="HeroHome">
                 <HeroHome />
             </section>
@@ -21,7 +29,7 @@ const Home: NextPage = () => {
             <section>
                 <ListBuah {...data} />
             </section>
-        </div>
+        </>
     )
 }
 

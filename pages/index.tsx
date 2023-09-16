@@ -2,31 +2,43 @@ import Hero from '@/section/landing/hero'
 import Keuntungan from '@/section/landing/keuntungan'
 import VisiMisi from '@/section/landing/visiMisi'
 import JoinUs from '@/section/landing/joinUs'
+import logo from '@/img/logoInfruit.png'
 import { NextPage } from 'next'
+import HeadSeo from '@/utils/head'
 
 const Landing: NextPage = () => {
   return (
-    <div>
-      {/* Section Hero */}
-      <section id='heroSection'>
-        <Hero />
-      </section>
+    <>
+      <HeadSeo
+        siteTitle="Infruit"
+        title="Semua Tentang Lifestyle & Outfits"
+        description="test" 
+        imags={''} 
+        canonical={''}    
+        />
 
-      {/* Section Keuntungan */ }
-      <section id='keuntunganSection'>
-        <Keuntungan />
-      </section>
+      <div>
+        {/* Section Hero */}
+        <section id='heroSection'>
+          <Hero />
+        </section>
 
-      {/* Section Visi Misi */}
-      <section id='visiMisiSection'>
-        <VisiMisi />
-      </section>
+        {/* Section Keuntungan */}
+        <section id='keuntunganSection'>
+          <Keuntungan />
+        </section>
 
-      {/* Section Join Us */}
-      <section id='joinUsSection'>
-        <JoinUs />
-      </section>
-    </div>
+        {/* Section Visi Misi */}
+        <section id='visiMisiSection'>
+          <VisiMisi />
+        </section>
+
+        {/* Section Join Us */}
+        <section id='joinUsSection'>
+          <JoinUs />
+        </section>
+      </div>
+    </>
   )
 }
 

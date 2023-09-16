@@ -9,6 +9,7 @@ import postSignup from "@/features/service/auth/postDaftar";
 import { NextPage } from "next";
 import Input from "@/input";
 import Button from "@/button";
+import HeadSeo from "@/utils/head";
 
 const Daftar: NextPage = () => {
     const router = useRouter()
@@ -69,6 +70,13 @@ const Daftar: NextPage = () => {
     }
     return (
         <>
+            <HeadSeo
+                siteTitle="InFruit"
+                title='Daftar'
+                description="Mari kurangi food waste"
+                imags={''}
+                canonical={'/daftar'}
+            />
             <div className="flex flex-row font-jakarta-sans overflow-hidden w-full">
                 <div className='hidden lg:inline lg:w-[50%] xl:w-[60%] h-full lg:h-screen'>
                     <Image

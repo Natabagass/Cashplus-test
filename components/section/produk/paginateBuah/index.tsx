@@ -1,12 +1,14 @@
 import CardBuah from "@/features/components/card";
 import ReactPaginate from "react-paginate";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Fruit, Props } from "@/interface/data/fruit";
 import Filter from "../filter";
 import { HiOutlineBars3BottomLeft } from "react-icons/hi2"
+import getByAlphabet from "@/features/service/search/getByAlphabet";
 
 const PaginateBuah = (props: Fruit) => {
+    {/* React Paginate Option */ }
     const itemsPerPage = 8;
     const [itemOffset, setItemOffset] = useState<number>(0);
     const endOffset = itemOffset + itemsPerPage;
@@ -16,13 +18,39 @@ const PaginateBuah = (props: Fruit) => {
         const newOffset = (event.selected * itemsPerPage) % props.data?.data?.data.length;
         setItemOffset(newOffset);
     };
+
     const result: Props[] = props.data?.data.data
+
+    {/* Filtered */ }
+    const [active, setActive] = useState<string>('All');
+    const [alph, setAlph] = useState<string>('');
+    const [filteredAlph, setFilteredAlph] = useState<any>([])
+    useEffect(() => {
+        const search = async () => {
+            try {
+                const result = await getByAlphabet(alph)
+                setFilteredAlph(result.data)
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        search()
+    }, [alph])
+
+    const filteredCity = result?.filter((item: Props) => {
+        if (active === 'All') {
+            return item;
+        } else {
+            item.place.includes(active)
+        }
+    })
+
+    {/* Search */ }
     const filteredData = (value: string) => {
         const res = result.filter((title: Props) => {
             return value && title && title.name && title.name.toLowerCase().includes(value)
         })
         setDataSearch(res)
-        console.log(dataSearch)
     }
     const [dataSearch, setDataSearch] = useState<Props[]>([])
     const searchItems = dataSearch.slice(itemOffset, endOffset)
@@ -54,7 +82,7 @@ const PaginateBuah = (props: Fruit) => {
                 </div>
                 <div className="w-full flex flex-row mt-10">
                     <div className="lg:flex hidden">
-                        <Filter />
+                        <Filter setActive={setActive} active={active} alph={alph} setAlph={setAlph} />
                     </div>
                     <div className="w-full flex flex-col">
                         <div className="grid grid-cols-2  xl:grid-cols-4 lg:gap-10 xl:gap-3 grid-rows-2 w-full">
@@ -81,10 +109,27 @@ const PaginateBuah = (props: Fruit) => {
                                         )
                                     })
                                     :
-                                    dataSearch === undefined ?
-                                        <div className="flex items-center justify-center h-full">
-                                            <h1 className="font-jakarta-sans font-semibold text-xl bg-gradient-to-b from-[#FF4087] to-[#9C003A] bg-clip-text text-transparent">Mohon maaf, artikel yang anda cari tidak ada...</h1>
-                                        </div>
+                                    filteredAlph.data.data.length > 0 ?
+                                        filteredAlph.data.data.map((item: Props) => {
+                                            return (
+                                                <CardBuah
+                                                    id={item.id}
+                                                    category={item.category}
+                                                    category_id={item.category_id}
+                                                    key={item.id}
+                                                    discount={item.discount}
+                                                    rating={item.rating}
+                                                    price={item.price}
+                                                    img={item.img}
+                                                    name={item.name}
+                                                    place={item.place}
+                                                    sold={item.sold}
+                                                    weight={item.weight}
+                                                    stock={item.stock}
+                                                    condition={item.condition}
+                                                />
+                                            )
+                                        })
                                         :
                                         currentItems?.map((data: Props) => {
                                             return (
