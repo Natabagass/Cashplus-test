@@ -33,16 +33,18 @@ const Navbar = () => {
     }, []);
     return (
         <div className={`${router.pathname === "/masuk" || router.pathname === "/daftar" ? 'hidden' : 'flex'}`}>
-            <div className={`${router.pathname !== "/" ? 'bg-white shadow-lg' : 'bg-transparent'} ${isScrolled ? 'bg-white transition-all duration-300 shadow-sm scroll-smooth' : 'bg-transparent shadow-none'} flex top-0 fixed z-10 justify-around items-center py-3 w-full flex-row`}>
-                <div className="relative w-[80px] mobile:w-[100px] h-[60px] flex justify-center">
-                    <Image
-                        src={logo}
-                        alt='Logo Infruit'
-                        style={{ objectPosition: 'center', objectFit: 'contain' }}
-                        fill
-                        className="ml-5 pb-2 mobile:pb-3"
-                    />
-                </div>
+            <div className={`${router.pathname !== "/" ? 'bg-white shadow-xl' : 'bg-transparent'} ${isScrolled ? 'bg-white transition-all duration-300 shadow-sm scroll-smooth' : 'bg-transparent shadow-none'} flex top-0 fixed z-30 justify-around items-center py-3 w-full flex-row`}>
+                <Link href={"/"}>
+                    <div className="relative w-[80px] mobile:w-[100px] h-[60px] flex justify-center">
+                        <Image
+                            src={logo}
+                            alt='Logo Infruit'
+                            style={{ objectPosition: 'center', objectFit: 'contain' }}
+                            fill
+                            className="ml-5 pb-2 mobile:pb-3"
+                        />
+                    </div>
+                </Link>
 
                 <div className="flex flex-row justify-around w-full items-center">
                     <div className="flex w-[100%] flex-row justify-center sm:justify-end items-center">

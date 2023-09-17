@@ -3,12 +3,14 @@ import { useCart } from "@/context/cartContext"
 import postBuy from "@/features/service/data/postBuy"
 import { Props, PropsKategori } from "@/interface/data/fruit"
 import { rupiahFormatter } from "@/utils/rupiahFormatter"
+import { getCookie } from "cookies-next"
 import { useRouter } from "next/router"
 import { useState, useEffect } from "react"
 import Swal from "sweetalert2"
 
 const BuyCard = (props: Props) => {
     const router = useRouter()
+    const token = getCookie('auth')
     const [quantity, setQuantity] = useState(0)
     const [sum, setSum] = useState<number>(0)
     const [isLoading, setIsLoading] = useState(false)
@@ -25,26 +27,40 @@ const BuyCard = (props: Props) => {
     const handleBuy = async (e: { preventDefault: () => void }) => {
         e.preventDefault
         const { amount, bank, product_id } = forms
-        setIsLoading(true)
 
-        try {
-            const res = await postBuy(bank, amount, product_id)
+        if (!token) {
+            return Swal.fire({
+                title: 'Apakah kamu mau masuk terlebih dahulu?',
+                showCancelButton: true,
+                confirmButtonText: 'Masuk',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    router.push('/masuk');
+                } else if (result.isDenied) {
+                    Swal.fire('Kembali ke page');
+                }
+            });
+        } else {
+            try {
+                setIsLoading(true)
+                const res = await postBuy(bank, amount, product_id)
 
-            if (res.status === 200) {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Berhasil Mengisi jumlah buah!',
-                    showConfirmButton: false,
-                    timer: 1500
-                }).then(res => {
-                    if (res.isDismissed) {
-                        router.push(`/payment`)
-                    }
-                })
+                if (res.status === 200) {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Berhasil Mengisi jumlah buah!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(res => {
+                        if (res.isDismissed) {
+                            router.push(`/payment`)
+                        }
+                    })
+                }
+            } catch (err) {
+                setIsLoading(false)
             }
-        } catch (err) {
-            setIsLoading(false)
         }
     }
     return (
