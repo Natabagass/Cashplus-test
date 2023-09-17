@@ -1,6 +1,6 @@
 
-# Friendchise 📝  
-
+# Infruit 📝  
+Infruit merupakan sebuah website untuk melakukan jual beli buah-buahan yang di supply dari berbagai macam kota yang bisa anda dapatkan secara mudah. Infruit memiliki misi untuk mengurangi food waste.
 
 ## Get Started 🚀  
 Clone project ini 
