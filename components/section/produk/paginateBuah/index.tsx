@@ -109,8 +109,8 @@ const PaginateBuah = (props: Fruit) => {
                                         )
                                     })
                                     :
-                                    filteredAlph.data.data.length > 0 ?
-                                        filteredAlph.data.data.map((item: Props) => {
+                                    filteredAlph.data?.data.length > 0 ?
+                                        filteredAlph.data?.data.map((item: Props) => {
                                             return (
                                                 <CardBuah
                                                     id={item.id}

@@ -11,7 +11,7 @@ const Landing: NextPage = () => {
     <>
       <HeadSeo
         siteTitle="Infruit"
-        title="Semua Tentang Lifestyle & Outfits"
+        title="Mari kurangi food waste"
         description="test" 
         imags={''} 
         canonical={''}    
