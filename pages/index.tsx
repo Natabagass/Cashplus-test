@@ -10,9 +10,9 @@ const Landing: NextPage = () => {
   return (
     <>
       <HeadSeo
-        siteTitle="Infruit"
-        title="Mari kurangi food waste"
-        description="test" 
+        siteTitle="Landing"
+        title="Infruit"
+        description="Mari kurangi food waste" 
         imags={''} 
         canonical={''}    
         />

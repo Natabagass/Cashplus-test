@@ -15,8 +15,8 @@ const Payment = () => {
     return (
         <>
             <HeadSeo
-                siteTitle="InFruit"
-                title='Payment'
+                siteTitle="Payment"
+                title='Infruit'
                 description="Mari kurangi food waste"
                 imags={''}
                 canonical={'/payment'}

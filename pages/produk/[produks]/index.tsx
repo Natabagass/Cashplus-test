@@ -9,8 +9,8 @@ const Produks: NextPage = ({ product }: InferGetServerSidePropsType<typeof getSe
     return (
         <>
             <HeadSeo
-                siteTitle="InFruit"
-                title={product.name}
+                siteTitle={product.name}
+                title="Infruit"
                 description="Mari kurangi food waste"
                 imags={product.img}
                 canonical={''}

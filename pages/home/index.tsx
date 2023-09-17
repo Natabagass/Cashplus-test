@@ -12,8 +12,8 @@ const Home: NextPage = () => {
     return (
         <>
             <HeadSeo
-                siteTitle="InFruit"
-                title='Home'
+                siteTitle="Home"
+                title='Infruit'
                 description="Mari kurangi food waste"
                 imags={''}
                 canonical={'/home'}

@@ -9,8 +9,8 @@ const History = () => {
     return (
         <>
             <HeadSeo
-                siteTitle="InFruit"
-                title='History'
+                siteTitle="Histiry"
+                title='Infruit'
                 description="Mari kurangi food waste"
                 imags={''}
                 canonical={'/history'}

@@ -65,8 +65,8 @@ const Masuk: NextPage = () => {
     return (
         <>
             <HeadSeo
-                siteTitle="InFruit"
-                title='Masuk'
+                siteTitle="Masuk"
+                title='Infruit'
                 description="Mari kurangi food waste"
                 imags={''}
                 canonical={'/payment'}
