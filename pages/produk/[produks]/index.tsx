@@ -3,6 +3,7 @@ import BuyCard from "@/section/perProduct/buyCard";
 import Desc from "@/section/perProduct/desc";
 import UlasanPembeli from "@/section/perProduct/ulasanPembeli";
 import HeadSeo from "@/utils/head";
+import * as CryptoJS from 'crypto-js';
 import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from "next";
 
 const Produks: NextPage = ({ product }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
@@ -36,10 +37,12 @@ const Produks: NextPage = ({ product }: InferGetServerSidePropsType<typeof getSe
 
 export default Produks;
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    const { id } = context.query
+    const decrypted = CryptoJS.AES.decrypt(id as string, 'vR7LhZ2okcUpQHYl/lYfnQ==' as string).toString(CryptoJS.enc.Utf8);
+
     try {
-        const { produks } = params!
-        const res = await getPerProduct(produks?.toString())
+        const res = await getPerProduct(decrypted as string)
         const dataProduct = res?.data.data
 
         if (!dataProduct) {
