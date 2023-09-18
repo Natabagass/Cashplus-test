@@ -50,7 +50,7 @@ const CartList = () => {
                         }
                     </div>
                 </div>
-                <div className="w-full lg:w-[30%] flex justify-center items-start ml-0 lg:ml-10 xl:ml-20">
+                <div className="w-full lg:w-[30%] flex justify-center items-start mt-10 ml-0 lg:ml-10 xl:ml-20">
                     <div className="border-2 w-full rounded-xl font-jakarta-sans sticky top-24 p-4">
                         <h1 className="text-blackLite text-base lg:text-lg font-bold">Ringkasan Belanja</h1>
                         <div className="my-4 text-sm font-semibold text-lite-dark-gray flex items-center flex-row justify-between">

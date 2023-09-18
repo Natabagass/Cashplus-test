@@ -30,14 +30,19 @@ const Daftar: NextPage = () => {
         username: '',
         phone: ''
     })
-
+    
     const handleSignup = async (e: { preventDefault: () => void }) => {
         e.preventDefault
         const { username, password, phone, email } = forms
         setIsLoading(true)
-
+        
         try {
             const res = await postSignup(username, password, phone, email)
+            if (res.status === 200) {
+                setTimeout(() => {
+                    router.replace('/masuk')
+                }, 1000);
+            }
 
             if (res.response.data.status === "error") {
                 const errMsg = {
@@ -56,13 +61,6 @@ const Daftar: NextPage = () => {
                 setIsLoading(false)
                 return
             }
-
-            if (res.status === 200) {
-                setTimeout(() => {
-                    router.replace('/masuk')
-                }, 1000);
-            }
-
         } catch (err) {
             console.log(err)
             setIsLoading(false)
