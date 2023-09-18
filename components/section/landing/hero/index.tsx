@@ -13,7 +13,7 @@ const Hero = () => {
                     <div className="bg-white bg-opacity-20 backdrop-blur-sm backdrop-filter rounded-lg p-4 lg:p-8 font-jakarta-sans">
                         <h2 className="text-2xl lg:text-4xl font-bold text-white mb-4 text-justify">Temukan Beragam <span className="text-light-yellow">Buah Segar</span> Langsung Diantar ke Rumahmu</h2>
                         <p className="text-white my-5 lg:my-10 text-justify">InFruits adalah platform online yang menyediakan berbagai macam buah segar dan berkualitas dengan harga terjangkau. Kami menjamin keaslian buah yang kami jual dan mengirimkannya langsung ke rumahmu.</p>
-                        <Link href={"/"} className="text-white w-full border-2 p-2 rounded-xl font-bold text-base lg:text-xl border-white">Mulai Cari di inFruit sekarang</Link>
+                        <Link href={"/produk"} className="text-white w-full border-2 p-2 rounded-xl font-bold text-base lg:text-xl border-white">Mulai Cari di inFruit sekarang</Link>
                     </div>
                 </div>
             </div>

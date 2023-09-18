@@ -31,6 +31,7 @@ npm run dev
 - Login & Registrasi Pengguna
 - Mencari Produk
 - Filter Kota Produk
+- Memasukkan barang ke Cart
 - Pembayaran menggunakan Midtrans Simulator BCA
 
 ## Fitur Tamabahan ✔

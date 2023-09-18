@@ -12,10 +12,6 @@ import Swal from "sweetalert2"
 
 const BuyCard = (props: Props) => {
     const { cartDatas, dispatch } = useContext(CartContext)
-    const itemDetail = useMemo(() => {
-        const filteredCart = cartDatas.find((cart: { id: number }) => cart.id === props.id)
-        return filteredCart
-    }, [cartDatas, props.id])
 
     const addToCart = () => {
         dispatch({
@@ -38,10 +34,6 @@ const BuyCard = (props: Props) => {
     useEffect(() => {
         setSum(quantity * props.price)
     }, [quantity, props.price])
-
-    const handleCart = async (e: { preventDefault: () => void}) => {
-        
-    }
 
     const handleBuy = async (e: { preventDefault: () => void }) => {
         e.preventDefault
@@ -96,6 +88,7 @@ const BuyCard = (props: Props) => {
                         }}
                         className="border-2 w-[60%] border-lite-dark-gray rounded-3xl p-1 pl-3 placeholder:text-sm"
                         name="amount"
+                        disabled={token ! == null ? false : true}
                         id="amount"
                         placeholder="Jumlah Buah" />
                     <h3>Stok Total: <span className="font-bold text-blackLite">{props.stock}</span></h3>
@@ -105,7 +98,7 @@ const BuyCard = (props: Props) => {
                     <h1 className="font-bold text-2xl">{quantity > 0 ? rupiahFormatter(sum) : rupiahFormatter(0)}</h1>
                 </div>
                 <div className="flex flex-col w-full my-4">
-                    <Button type="submit" disabled={token ? false : true} isLoading={isLoading} onClick={handleBuy} className="border-4 disabled:bg-gray-300 disabled:border-none disabled:text-white rounded-xl font-semibold w-full p-1 text-dark-green hover:bg-dark-green hover:text-white border-dark-green">Beli Sekarang</Button>
+                    <Button type="submit" disabled={quantity > 0 ? false : true} isLoading={isLoading} onClick={handleBuy} className="border-4 disabled:bg-gray-300 disabled:border-none disabled:text-white rounded-xl font-semibold w-full p-1 text-dark-green hover:bg-dark-green hover:text-white border-dark-green">Beli Sekarang</Button>
                     <Button type="button"
                         onClick={addToCart}
                         className="border-4 rounded-xl mt-2 font-semibold w-full p-1 bg-dark-green text-white hover:bg-white hover:text-dark-green border-dark-green">Tambahkan Keranjang</Button>
