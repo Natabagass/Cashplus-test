@@ -21,11 +21,11 @@ const CardHistory = (props: receipt) => {
                     <div className="w-[100px] h-[100px] mobile:w-[150px] mobile:h-[150px] sm:w-[200px] sm:h-[200px] relative">
                         <Image src={props.product.img} alt="ganmbar buah" fill style={{ objectFit: 'cover', objectPosition: 'center' }} className="rounded-3xl" />
                     </div>
-                    <h1 className="font-bold capitalize text-xs mobile:text-base sm:text-xl mt-3 flex justify-center">Status : &nbsp;
+                    <span className="font-bold capitalize text-xs mobile:text-base sm:text-xl mt-3 flex justify-center">Status : &nbsp;
                         {props.status === 'paid' ? <h2 className="text-freshGreen">{props.status}</h2>
                             :
                             <h2 className="text-red-600">{props.status}</h2>}
-                    </h1>
+                    </span>
                 </div>
             </div>
         </div>

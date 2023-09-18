@@ -25,7 +25,7 @@ const Payment = () => {
                 <div className="flex flex-col w-full">
                     <h1 className="font-bold flex justify-center text-3xl">Pilih Pembayaran</h1>
 
-                    <div className="mx-44 my-10">
+                    <div className="mx-mobile md:mx-tablet lg:mx-content my-10">
                         <hr className="w-full  border-lite-dark-gray" />
                         <div className="px-5">
                             <div onClick={() => {
@@ -44,7 +44,7 @@ const Payment = () => {
                             } className="flex flex-row justify-between items-center">
                                 <div className="flex flex-row my-8 items-center">
                                     <Image src={BCA} alt="BCA" height={100} width={100} />
-                                    <h1 className="font-bold text-xl ml-5">Bank BCA</h1>
+                                    <h1 className="font-bold text-base mobile:text-xl ml-5">Bank BCA</h1>
                                 </div>
                                 <SlArrowRight className="text-3xl text-lite-dark-gray" />
                             </div>
@@ -55,7 +55,7 @@ const Payment = () => {
                             <div className="flex flex-row justify-between items-center">
                                 <div className="flex flex-row my-8 items-center">
                                     <Image src={Mandiri} alt="Mandiri" height={100} width={100} />
-                                    <h1 className="font-bold text-xl ml-5">Bank Mandiri</h1>
+                                    <h1 className="font-bold text-base mobile:text-xl ml-5">Bank Mandiri</h1>
                                 </div>
                                 <SlArrowRight className="text-3xl text-lite-dark-gray" />
                             </div>
@@ -66,7 +66,7 @@ const Payment = () => {
                             <div className="flex flex-row justify-between items-center">
                                 <div className="flex flex-row my-8 items-center">
                                     <Image src={BNI} alt="BNI" height={100} width={100} />
-                                    <h1 className="font-bold text-xl ml-5">Bank BNI</h1>
+                                    <h1 className="font-bold text-base mobile:text-xl ml-5">Bank BNI</h1>
                                 </div>
                                 <SlArrowRight className="text-3xl text-lite-dark-gray" />
                             </div>
@@ -77,7 +77,7 @@ const Payment = () => {
                             <div className="flex flex-row justify-between items-center">
                                 <div className="flex flex-row my-8 items-center">
                                     <Image src={BRI} alt="BRI" height={100} width={100} />
-                                    <h1 className="font-bold text-xl ml-5">Bank BRI</h1>
+                                    <h1 className="font-bold text-base mobile:text-xl ml-5">Bank BRI</h1>
                                 </div>
                                 <SlArrowRight className="text-3xl text-lite-dark-gray" />
                             </div>
@@ -88,7 +88,7 @@ const Payment = () => {
                             <div className="flex flex-row justify-between items-center">
                                 <div className="flex flex-row my-8 items-center">
                                     <Image src={CIMB} alt="CIMB" height={100} width={100} />
-                                    <h1 className="font-bold text-xl ml-5">Bank CIMB</h1>
+                                    <h1 className="font-bold text-base mobile:text-xl ml-5">Bank CIMB</h1>
                                 </div>
                                 <SlArrowRight className="text-3xl text-lite-dark-gray" />
                             </div>

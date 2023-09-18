@@ -6,8 +6,8 @@ import { Props, PropsKategori } from "@/interface/data/fruit";
 const Desc = ( props: Props) => {
     return (
         <div className="w-full mx-mobile md:mx-tablet">
-            <div className="flex flex-col md:flex-row w-full h-full">
-                <div className="min-h-[300px] min-w-[300px] md:min-h-[250px] md:min-w-[250px] relative">
+            <div className="flex flex-col md:flex-row items-center w-full h-full">
+                <div className="min-h-[250px] w-[250px] sm:min-h-[250px] sm:min-w-[250px] relative">
                     <Image src={props.img} className="rounded-3xl" fill style={{ objectPosition: 'center', objectFit: 'cover' }} alt="Gambar Buah" />
                 </div>
 

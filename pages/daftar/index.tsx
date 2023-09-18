@@ -158,6 +158,7 @@ const Daftar: NextPage = () => {
 
                             <Button
                                 className='mt-5 w-full text-lite-gray bg-dark-green p-3 rounded-lg'
+                                isLoading={isLoading}
                                 onClick={handleSignup}
                             >Daftar</Button>
                             <h3 className='text-sm text-lite-dark-gray mt-5 justify-center flex'>Dengan mendaftar, saya menyetujui</h3>

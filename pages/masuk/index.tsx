@@ -9,6 +9,7 @@ import postLogin from "@/features/service/auth/postLogin";
 import { setCookie } from "cookies-next";
 import { NextPage } from "next";
 import HeadSeo from "@/utils/head";
+import Button from "@/button";
 
 const Masuk: NextPage = () => {
     const router = useRouter()
@@ -132,10 +133,11 @@ const Masuk: NextPage = () => {
                             <span className="text-red-500 text-sm flex justify-center w-full">{error.akun}</span>
 
                             <Link href="" className='text-light-green text-base lg:text-lg font-semibold flex justify-end mt-5'>Lupa kata sandi?</Link>
-                            <button
+                            <Button
                                 className='mt-5 w-full text-lite-gray bg-dark-green p-3 rounded-lg'
+                                isLoading={isLoading}
                                 onClick={handleLogin}
-                            >Masuk</button>
+                            >Masuk</Button>
                             <h3 className='text-xs mt-5 justify-center flex'>Butuh bantuan? &nbsp; <Link href="" className='text-dark-green font-bold'>Hubungi inFruit Care</Link></h3>
                         </div>
                     </div>

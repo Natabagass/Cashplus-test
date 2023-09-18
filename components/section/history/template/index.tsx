@@ -13,10 +13,10 @@ const TemplateHistory = (props: Props) => {
             <h1 className="font-bold text-2xl mx-7 md:mx-14">History Pemesanan</h1>
 
             <div className="flex flex-col mx-mobile md:mx-tablet">
-                {props.data?.data.map(data => {
+                {props.data?.data.map((data, index: number) => {
                     return (
                         <CardHistory
-                            key={data.id}
+                            key={index}
                             id={data.id}
                             amount={data.amount}
                             gross_amount={data.gross_amount}
