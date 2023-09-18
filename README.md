@@ -33,7 +33,7 @@ npm run dev
 - Filter Kota Produk
 - Pembayaran menggunakan Midtrans Simulator BCA
 
-## Fitur Tamabahan 🔥
+## Fitur Tamabahan ✔
 - Sitemap
 - SEO & Meta
 - Open Graph

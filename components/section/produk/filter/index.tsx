@@ -29,6 +29,7 @@ const Filter = (props: Props) => {
     const handleRadioChange = (value: string) => {
         if (selectedOption === value) {
             setSelectedOption(null);
+            props.setAlph(value)
         } else {
             setSelectedOption(value);
             props.setAlph(value);
@@ -39,7 +40,7 @@ const Filter = (props: Props) => {
         <>
             {/* Filter Desktop */}
             <div className="ml-mobile sm:ml-tablet">
-                <div className="font-jakarta-sans sticky top-24 shadow-full h-[250px] py-5 rounded-xl lg:flex flex-col hidden">
+                <div className="font-jakarta-sans sticky top-24 shadow-full h-[400px] py-5 rounded-xl lg:flex flex-col hidden">
                     <div className="px-5">
                         <h1 className="font-bold px-5">Lokasi</h1>
                         <div className="flex flex-col my-2 px-10 text-sm text-lite-dark-gray font-semibold w-full text-left">
@@ -83,7 +84,7 @@ const Filter = (props: Props) => {
                     </div>
                     <hr className="w-full border-gray-300 mt-2 mb-5" />
 
-                    {/* <div className="px-5">
+                    <div className="px-5">
                         <h1 className="font-bold px-5">Urutkan</h1>
                         <div className="flex flex-col px-5 items-center">
                             <div className="my-2 w-full">
@@ -119,7 +120,7 @@ const Filter = (props: Props) => {
                             </div>
                         </div>
                     </div>
-                    <hr className="w-full border-gray-300 mt-2 mb-1" /> */}
+                    <hr className="w-full border-gray-300 mt-2 mb-1" />
                 </div>
             </div>
 
@@ -171,7 +172,7 @@ const Filter = (props: Props) => {
                 </div>
                 <hr className="w-full border-gray-300 mt-2 mb-5" />
 
-                {/* <div className="px-5">
+                <div className="px-5">
                     <h1 className="font-bold px-5">Urutkan</h1>
                     <div className="flex flex-col px-5 items-center">
                         <div className="my-2 w-full">
@@ -207,7 +208,7 @@ const Filter = (props: Props) => {
                         </div>
                     </div>
                 </div>
-                <hr className="w-full border-gray-300 mt-2 mb-1" /> */}
+                <hr className="w-full border-gray-300 mt-2 mb-1" />
             </div>
         </>
     );

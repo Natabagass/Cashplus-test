@@ -48,7 +48,6 @@ const PaginateBuah = (props: Fruit) => {
         }
     })
     const dataFilterCity = filteredCity?.slice(itemOffset, endOffset)
-    const pageCountCity = Math.ceil(filteredCity?.length / itemsPerPage);
 
     {/* Search */ }
     const filteredData = (value: string) => {
@@ -91,13 +90,8 @@ const PaginateBuah = (props: Fruit) => {
         ));
     };
 
-    const filteredItems = dataSearch.length > 0
-        ? searchItems
-        : dataFilterCity
-            ? dataFilterCity
-            : filtered
-                ? filtered
-                : currentItems;
+    const filteredItems = dataSearch.length > 0 ? searchItems : active !== "All" ? dataFilterCity : filtered
+
     return (
         <>
             <div className="flex flex-col w-full  mt-32">

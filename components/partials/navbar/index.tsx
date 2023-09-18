@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IoPersonCircle } from "react-icons/io5"
 import Image from "next/image";
 import logo from "@/img/logoInfruit.png"
@@ -8,8 +8,10 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { deleteCookie, getCookie } from "cookies-next";
 import { BiTime } from "react-icons/bi";
+import { CartContext } from "@/context/cartContext";
 
 const Navbar = () => {
+    const { cartDatas } = useContext(CartContext)
     const token = getCookie('auth')
     const router = useRouter()
     const [isScrolled, setIsScrolled] = useState<Boolean>(false);
@@ -47,10 +49,23 @@ const Navbar = () => {
                 </Link>
 
                 <div className="flex flex-row justify-around w-full items-center">
-                    <div className="flex w-[100%] flex-row justify-center sm:justify-end items-center">
-                        <Link href='/produk' className={`${router.asPath !== "/" ? 'text-dark-gray' : `${isScrolled ? 'text-dark-gray' : 'text-white'}`} mr-1 mobile:mr-2`}>Produk</Link>
-                        <Link href="/cart" className={`${router.asPath !== "/" ? 'text-dark-gray' : `${isScrolled ? 'text-dark-gray' : 'text-white'}`} text-xl ml-3 mobile:ml-5 items-center`}><AiOutlineShoppingCart /></Link>
-                        <Link href="/history" className={`${token ? 'flex' : 'hidden'} ${router.asPath !== "/" ? 'text-dark-gray' : `${isScrolled ? 'text-dark-gray' : 'text-white'}`} text-xl ml-3 mobile:ml-5 items-center`}><BiTime /></Link>
+                    <div className="flex w-full flex-row justify-center sm:justify-end items-center">
+                        <Link href='/produk' className={`${router.asPath !== "/" ? 'text-dark-gray' : `${isScrolled ? 'text-dark-gray' : 'text-white'}`} ml-8 mobile:ml-0 mr-1 mobile:mr-2`}>Produk</Link>
+                        <Link href={"/cart"} className="flex flex-row">
+                            <div
+                                className={`${router.asPath !== "/" ? 'text-dark-gray' : `${isScrolled ? 'text-dark-gray' : 'text-white'}`} text-xl ml-3 mobile:ml-5 items-center`}>
+                                <AiOutlineShoppingCart />
+                            </div>
+                            <div className="ml-7 -mt-3 absolute">
+                                {
+                                    cartDatas?.length > 0 &&
+                                    <div className="bg-lightRed text-xs text-white py-1 px-2 rounded-full">
+                                        {cartDatas?.length}
+                                    </div>
+                                }
+                            </div>
+                        </Link>
+                        <Link href="/history" className={`${token ? 'flex' : 'hidden'} ${router.asPath !== "/" ? 'text-dark-gray' : `${isScrolled ? 'text-dark-gray' : 'text-white'}`} text-xl ml-5 mobile:ml-5 items-center`}><BiTime /></Link>
                     </div>
 
                     <div className="flex w-[85%] mboile:w-[70%] sm:w-[45%] lg:w-[30%] xl:w-[20%] flex-row items-center justify-center">
@@ -59,7 +74,7 @@ const Navbar = () => {
                                 token ?
                                     <>
                                         <div className='flex flex-row items-center'>
-                                            <IoPersonCircle className='text-3xl text-lightOrange mr-5' />
+                                            <IoPersonCircle className='text-3xl text-lightOrange mr-2 sm:mr-5' />
                                             <button onClick={handleLogout} className={`${isScrolled ? 'text-dark-green hover:text-white' : 'text-dark-green hover:text-white'} hover:bg-dark-green transition-all duration-300 py-1 sm:py-2 px-2 sm:px-3 mr-3 border-dark-green border-2 font-semibold text-sm rounded-xl `}>
                                                 <h1>Keluar</h1>
                                             </button>

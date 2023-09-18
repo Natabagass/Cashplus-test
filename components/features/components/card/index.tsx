@@ -11,7 +11,7 @@ const CardBuah = (props: Props) => {
     return (
         <>
             <Link href={{ pathname: `/produk/${convertSlug}`, query: {id: `${AES.encrypt(props.id.toString() as string, 'vR7LhZ2okcUpQHYl/lYfnQ==' as string).toString()}`} }}>
-            <div className="ml-3 font-jakarta-sans flex flex-col shadow-xl outline-none cursor-pointer transition rounded-3xl border mb-[30px] md:min-h-[350px] lg:min-h-[450px] min-w-[215px] bg-white">
+            <div className="ml-3 font-jakarta-sans flex flex-col shadow-xl outline-none cursor-pointer transition rounded-3xl border mb-[30px] md:min-h-[350px] lg:min-h-[450px] min-w-[100px] mobile:min-w-[215px] bg-white">
                 <div className="w-[100%] min-h-[100px] mobile:min-h-[150px] sm:min-h-[250px] relative hover:opacity-80">
                     <Image src={props.img} fill style={{ objectFit: 'cover', objectPosition: 'center' }} className="rounded-t-3xl" alt="Gambar Barang" />
                 </div>

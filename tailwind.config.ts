@@ -22,6 +22,7 @@ const config: Config = {
         'lightOrange': '#F7982D',
         'lightRed': '#E4504A',
         'blackLite': '#323741',
+        'whiteButton': '#E7F0EA'
       },
       margin: {
         content: '151px',

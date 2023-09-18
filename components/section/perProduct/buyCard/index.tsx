@@ -1,14 +1,29 @@
 import Button from "@/button"
-import { useCart } from "@/context/cartContext"
+import { CartContext } from "@/context/cartContext"
 import postBuy from "@/features/service/data/postBuy"
 import { Props, PropsKategori } from "@/interface/data/fruit"
 import { rupiahFormatter } from "@/utils/rupiahFormatter"
+import { HiOutlineShoppingCart } from "react-icons/hi"
+import {AiOutlinePlus, AiOutlineMinus} from "react-icons/ai"
 import { getCookie } from "cookies-next"
 import { useRouter } from "next/router"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext, useMemo } from "react"
 import Swal from "sweetalert2"
 
 const BuyCard = (props: Props) => {
+    const { cartDatas, dispatch } = useContext(CartContext)
+    const itemDetail = useMemo(() => {
+        const filteredCart = cartDatas.find((cart: { id: number }) => cart.id === props.id)
+        return filteredCart
+    }, [cartDatas, props.id])
+
+    const addToCart = () => {
+        dispatch({
+            type: 'add_to_cart',
+            value: props
+        })
+    }
+
     const router = useRouter()
     const token = getCookie('auth')
     const [quantity, setQuantity] = useState(0)
@@ -23,6 +38,10 @@ const BuyCard = (props: Props) => {
     useEffect(() => {
         setSum(quantity * props.price)
     }, [quantity, props.price])
+
+    const handleCart = async (e: { preventDefault: () => void}) => {
+        
+    }
 
     const handleBuy = async (e: { preventDefault: () => void }) => {
         e.preventDefault
@@ -86,8 +105,10 @@ const BuyCard = (props: Props) => {
                     <h1 className="font-bold text-2xl">{quantity > 0 ? rupiahFormatter(sum) : rupiahFormatter(0)}</h1>
                 </div>
                 <div className="flex flex-col w-full my-4">
-                    <Button type="submit" isLoading={isLoading} onClick={handleBuy} className="border-4 rounded-xl font-semibold w-full p-1 text-dark-green hover:bg-dark-green hover:text-white border-dark-green">Beli Sekarang</Button>
-                    <Button type="button" isLoading={isLoading} className="border-4 rounded-xl mt-2 font-semibold w-full p-1 bg-dark-green text-white hover:bg-white hover:text-dark-green border-dark-green">Tambahkan Keranjang</Button>
+                    <Button type="submit" disabled={token ? false : true} isLoading={isLoading} onClick={handleBuy} className="border-4 disabled:bg-gray-300 disabled:border-none disabled:text-white rounded-xl font-semibold w-full p-1 text-dark-green hover:bg-dark-green hover:text-white border-dark-green">Beli Sekarang</Button>
+                    <Button type="button"
+                        onClick={addToCart}
+                        className="border-4 rounded-xl mt-2 font-semibold w-full p-1 bg-dark-green text-white hover:bg-white hover:text-dark-green border-dark-green">Tambahkan Keranjang</Button>
                 </div>
             </div>
         </div>
