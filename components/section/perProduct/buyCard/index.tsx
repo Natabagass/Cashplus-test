@@ -88,7 +88,6 @@ const BuyCard = (props: Props) => {
                         }}
                         className="border-2 w-[60%] border-lite-dark-gray rounded-3xl p-1 pl-3 placeholder:text-sm"
                         name="amount"
-                        disabled={token ! == null ? false : true}
                         id="amount"
                         placeholder="Jumlah Buah" />
                     <h3>Stok Total: <span className="font-bold text-blackLite">{props.stock}</span></h3>
