@@ -4,16 +4,35 @@ import { FaRegStar } from "react-icons/fa"
 import { Props } from "@/interface/data/fruit";
 import { rupiahFormatter } from "@/utils/rupiahFormatter";
 import { AES } from 'crypto-js';
+import { dynamicBlurDataUrl } from "utils/image/dynamicBlurDataUrl";
+import { useEffect, useState } from "react";
 
 const CardBuah = (props: Props) => {
+    const [imageUrl, setImageUrl] = useState<string>('');
     const convertSlug = props.name.replace(/ /g, '-').toLowerCase();
+
+    const encodedImage = () => {
+        const base64EncodedImage = dynamicBlurDataUrl(props.img);
+        setImageUrl(base64EncodedImage)
+    }
+
+    useEffect(() => {
+        encodedImage()
+    }, [])
 
     return (
         <>
             <Link href={{ pathname: `/produk/${convertSlug}`, query: {id: `${AES.encrypt(props.id.toString() as string, 'vR7LhZ2okcUpQHYl/lYfnQ==' as string).toString()}`} }}>
             <div className="ml-3 font-jakarta-sans flex flex-col shadow-xl outline-none cursor-pointer transition rounded-3xl border mb-[30px] md:min-h-[350px] lg:min-h-[450px] min-w-[100px] mobile:min-w-[215px] bg-white">
                 <div className="w-[100%] min-h-[100px] mobile:min-h-[150px] sm:min-h-[250px] relative hover:opacity-80">
-                    <Image src={props.img} fill style={{ objectFit: 'cover', objectPosition: 'center' }} className="rounded-t-3xl" alt="Gambar Barang" />
+                    <Image 
+                        src={props.img}
+                        placeholder="blur"
+                        blurDataURL={imageUrl}
+                        fill
+                        style={{ objectFit: 'cover', objectPosition: 'center' }}
+                        className="rounded-t-3xl"
+                        alt="Gambar Barang" />
                 </div>
                 <div className="bg-white py-[10px] min-h-[230px] mobile:min-h-[200px] lg:min-h-[240px] px-3 flex flex-col rounded-b-3xl w-full font-jakarta-sans">
                     <h2 className="font-medium">{props.name}</h2>

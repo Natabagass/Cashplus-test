@@ -6,6 +6,7 @@ import { Fruit, Props } from "@/interface/data/fruit";
 import Filter from "../filter";
 import { HiOutlineBars3BottomLeft } from "react-icons/hi2"
 import getByAlphabet from "@/features/service/search/getByAlphabet";
+import Image from "next/image";
 
 const PaginateBuah = (props: Fruit) => {
     {/* React Paginate Option */ }
@@ -72,20 +73,8 @@ const PaginateBuah = (props: Fruit) => {
     const renderFilteredItems = (items: Props[]) => {
         return items.map((data: Props) => (
             <CardBuah
-                id={data.id}
-                category={data.category}
-                category_id={data.category_id}
+                {...data}
                 key={data.id}
-                discount={data.discount}
-                rating={data.rating}
-                price={data.price}
-                img={data.img}
-                name={data.name}
-                place={data.place}
-                sold={data.sold}
-                weight={data.weight}
-                stock={data.stock}
-                condition={data.condition}
             />
         ));
     };
@@ -97,7 +86,7 @@ const PaginateBuah = (props: Fruit) => {
             <div className="flex flex-col w-full  mt-32">
                 <div className="mx-mobile sm:mx-tablet">
                     <div className="w-full flex justify-center flex-row">
-                        <button onClick={() => setVisible(true)} className="mr-3 lg:hidden flex border-2 p-2 rounded-lg flex-row items-center"><HiOutlineBars3BottomLeft class="mr-2" /> Filter</button>
+                        <button onClick={() => setVisible(true)} className="mr-3 lg:hidden flex border-2 p-2 rounded-lg flex-row items-center"><HiOutlineBars3BottomLeft className="mr-2" /> Filter</button>
                         <div className="w-[50%] flex justify-center border-2 rounded-xl">
                             <form className="w-full">
                                 <div className="relative">
@@ -115,12 +104,17 @@ const PaginateBuah = (props: Fruit) => {
                     <div className="mr-mobile sm:mr-tablet w-full">
                         <div className="w-full flex flex-col">
                             <div className="grid grid-cols-2  xl:grid-cols-4 lg:gap-10 xl:gap-3 grid-rows-2 w-full">
-                                {filteredItems?.length > 0 ? (
+                                {filteredItems?.length > 0 && (
                                     renderFilteredItems(filteredItems)
-                                ) : (
-                                    ''
                                 )}
                             </div>
+                            {
+                                filteredItems?.length === 0 && (
+                                    <div className="min-h-[400px] w-full grid place-items-center">
+                                        <img src="/icon/icon-loading.svg" alt="loading"/>
+                                    </div>
+                                )
+                            }
                             <div className="flex flex-row w-full justify-center items-center my-14">
                                 <div className="flex flex-row items-center font-semibold justify-around w-full">
                                     {
