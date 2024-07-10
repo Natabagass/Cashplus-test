@@ -4,9 +4,9 @@ const baseUrl =
     ? 'http://localhost:3000/'
     : process.env.NEXT_PUBLIC_DOMAIN;
 
-export function dynamicBlurDataUrl(url: string) {
+export async function dynamicBlurDataUrl(url: string) {
 
-  const base64str = fetch(
+  const base64str = await fetch(
     `${baseUrl}/_next/image?url=${url}&w=16&q=75`
   ).then(async (res) =>
     Buffer.from(await res.arrayBuffer()).toString('base64')
