@@ -81,6 +81,8 @@ const PaginateBuah = (props: Fruit) => {
 
     const filteredItems = dataSearch.length > 0 ? searchItems : active !== "All" ? dataFilterCity : filtered
 
+    console.log(filteredItems)
+
     return (
         <>
             <div className="flex flex-col w-full  mt-32">
@@ -109,9 +111,14 @@ const PaginateBuah = (props: Fruit) => {
                                 )}
                             </div>
                             {
-                                filteredItems?.length === 0 && (
-                                    <div className="min-h-[400px] w-full grid place-items-center">
-                                        <img src="/icon/icon-loading.svg" alt="loading"/>
+                                filteredItems === undefined && (
+                                    <div className="min-h-[300px] w-full grid place-items-center">
+                                        <Image 
+                                            src="/icon/icon-loading.svg" 
+                                            alt="loading" 
+                                            width={24} 
+                                            height={24}
+                                        />
                                     </div>
                                 )
                             }

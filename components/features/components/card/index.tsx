@@ -7,18 +7,26 @@ import { AES } from 'crypto-js';
 import { dynamicBlurDataUrl } from "utils/image/dynamicBlurDataUrl";
 import { useEffect, useState } from "react";
 
+const getBlurImageUrl = (img: string) => {
+    const url = dynamicBlurDataUrl(img).then(res => { 
+        console.log(res)
+        return res
+     })
+    return url
+}
+
 const CardBuah = (props: Props) => {
-    const [imageUrl, setImageUrl] = useState<string>('');
+    // const [imageUrl, setImageUrl] = useState<string>('');
     const convertSlug = props.name.replace(/ /g, '-').toLowerCase();
-
-    const encodedImage = () => {
-        const base64EncodedImage = dynamicBlurDataUrl(props.img);
-        setImageUrl(base64EncodedImage)
+    const imageUrl = getBlurImageUrl(props.img).then(res => {
+        return res
+    })
+    console.log(imageUrl)
+    const encodedImage = async () => {
+        const base64EncodedImage = await dynamicBlurDataUrl(props.img);
+        // setImageUrl(base64EncodedImage)
+        console.log(base64EncodedImage)
     }
-
-    useEffect(() => {
-        encodedImage()
-    }, [])
 
     return (
         <>
@@ -28,7 +36,7 @@ const CardBuah = (props: Props) => {
                     <Image 
                         src={props.img}
                         placeholder="blur"
-                        blurDataURL={imageUrl}
+                        blurDataURL={'data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgdmlld0JveD0nMCAwIDggNSc+CiAgICAgIDxmaWx0ZXIgaWQ9J2InIGNvbG9yLWludGVycG9sYXRpb24tZmlsdGVycz0nc1JHQic+CiAgICAgICAgPGZlR2F1c3NpYW5CbHVyIHN0ZERldmlhdGlvbj0nMScgLz4KICAgICAgPC9maWx0ZXI+CgogICAgICA8aW1hZ2UgcHJlc2VydmVBc3BlY3RSYXRpbz0nbm9uZScgZmlsdGVyPSd1cmwoI2IpJyB4PScwJyB5PScwJyBoZWlnaHQ9JzEwMCUnIHdpZHRoPScxMDAlJyAKICAgICAgaHJlZj0nZGF0YTppbWFnZS9hdmlmO2Jhc2U2NCxbb2JqZWN0IFByb21pc2VdJyAvPgogICAgPC9zdmc+CiAg'}
                         fill
                         style={{ objectFit: 'cover', objectPosition: 'center' }}
                         className="rounded-t-3xl"

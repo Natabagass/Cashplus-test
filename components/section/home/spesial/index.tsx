@@ -16,7 +16,7 @@ const Spesial = () => {
                 </Link>
                 <Link href={'/'} className="flex flex-col items-center my-8 lg:my-0">
                     <div className="bg-[#DBD24D] p-5 rounded-full">
-                        <GiFruitBowl class="text-2xl md:text-4xl w-full items-center" />
+                        <GiFruitBowl className="text-2xl md:text-4xl w-full items-center" />
                     </div>
                     <h3 className="text-center mt-5">Fresh Fruits</h3>
                 </Link>

@@ -31,7 +31,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
       <CartProvider>
         <QueryClientProvider client={queryClient}>
           <Layout>
-            <NextjsProgressbar />
+            <NextjsProgressbar options={{ showSpinner: false }} color="#F7982D"/>
             <Component {...pageProps} />
           </Layout>
         </QueryClientProvider>
