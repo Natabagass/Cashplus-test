@@ -1,5 +1,5 @@
 import CartCard from "../card";
-import { useContext, useMemo } from "react";
+import { useContext, useMemo, useState } from "react";
 import { CartContext } from "@/context/cartContext";
 import { getCookie } from "cookies-next";
 import Link from "next/link";
@@ -7,27 +7,30 @@ import { rupiahFormatter } from "@/utils/rupiahFormatter";
 import Button from "@/button";
 import Swal from "sweetalert2";
 import postCart from "@/features/service/data/postCart";
+import { useRouter } from "next/router";
 
 const CartList = () => {
-    const { cartDatas } = useContext(CartContext)
+    const [isLoadingScreen, setIsLoadingScreen] = useState(false)
+    const { cartDatas, dispatch } = useContext(CartContext)
     const token = getCookie('auth')
+    const router = useRouter()
 
     const subtotal = useMemo(() => {
         let total = 0
 
-        cartDatas.map((data: any) => {
+        cartDatas?.map((data: any) => {
             total += data.price * data.count
         })
 
         return total
     }, [cartDatas])
-    
+
     const fruitIds = useMemo(() => {
         // also check amount of fruit
         let ids: number[] = []
 
-        cartDatas.forEach((data: any) => {
-            for(let i = 0; i < data.count; i++) {
+        cartDatas?.forEach((data: any) => {
+            for (let i = 0; i < data.count; i++) {
                 ids.push(data.id)
             }
         });
@@ -36,6 +39,7 @@ const CartList = () => {
     }, [cartDatas])
 
     const onBuyItems = async () => {
+        setIsLoadingScreen(true)
         if (!token) {
             Swal.fire({
                 position: 'center',
@@ -50,16 +54,22 @@ const CartList = () => {
         const res = await postCart(1, 'bca', fruitIds)
 
         if (res.status === 200) {
+            dispatch({
+                type: 'remove_all_item_from_cart'
+            })
+            setIsLoadingScreen(false)
             Swal.fire({
                 position: 'center',
                 icon: 'success',
                 title: 'Transaksi Berhasil',
                 showConfirmButton: false,
                 timer: 1500
+            }).then(() => {
+                router.push('/history')
             })
-            return
         } else {
             console.log(res)
+            setIsLoadingScreen(false)
             const errorMessage = Object.keys(res?.response.data.message)
                 .map((key) => res?.response.data?.message[key][0])
                 .join(', ')
@@ -72,6 +82,18 @@ const CartList = () => {
                 showConfirmButton: true,
             })
         }
+    }
+
+    if (isLoadingScreen) {
+        Swal.fire({
+            position: 'center',
+            icon: 'question',
+            title: 'Transaksi sedang diproses',
+            showConfirmButton: false,
+            didOpen: () => {
+                Swal.showLoading()
+            }
+        })
     }
 
     return (

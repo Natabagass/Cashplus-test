@@ -13,6 +13,8 @@ const reducer = (state:any, action: { type: string, value: Props, id: number }) 
             return remove_from_cart(state, action.id)
         case 'remove_all_item_by_id':
             return remove_all_item_by_id(state, action.id)
+        case 'remove_all_item_from_cart':
+            return []
         default:
             console.log("action not found")
     }

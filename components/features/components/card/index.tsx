@@ -60,7 +60,7 @@ const CardBuah = (props: Props) => {
                         <FaRegStar className="text-light-yellow text-lg" />
                         <h4 className="ml-2">{props.rating}</h4>
                         <hr className="rotate-90 h-0.5 w-3.5 bg-lite-dark-gray border-lite-dark-gray border border-solid font-bold" />
-                        <h4>{props.sold}</h4>
+                        <h4>{props.stock}</h4>
                     </div>
                 </div>
             </div>
