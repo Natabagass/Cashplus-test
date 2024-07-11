@@ -1,12 +1,20 @@
 import CardBuah from "@/features/components/card";
 import ReactPaginate from "react-paginate";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri"
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { Fruit, Props } from "@/interface/data/fruit";
 import Filter from "../filter";
 import { HiOutlineBars3BottomLeft } from "react-icons/hi2"
 import getByAlphabet from "@/features/service/search/getByAlphabet";
 import Image from "next/image";
+import { dynamicBlurDataUrl } from "utils/image/dynamicBlurDataUrl";
+
+const blurImageUrl = async (images: string[]) => {
+    const result = await Promise.all(images.map(async (image) => {
+        return dynamicBlurDataUrl(image)
+    }))
+    return result
+}
 
 const PaginateBuah = (props: Fruit) => {
     {/* React Paginate Option */ }
@@ -71,9 +79,11 @@ const PaginateBuah = (props: Fruit) => {
     }
 
     const renderFilteredItems = (items: Props[]) => {
-        return items.map((data: Props) => (
+        // const blurredImages = use(blurImageUrl(items.map((item) => item.img)));
+        return items.map((data: Props, index) => (
             <CardBuah
                 {...data}
+                // img={blurredImages[index]}
                 key={data.id}
             />
         ));
@@ -105,7 +115,7 @@ const PaginateBuah = (props: Fruit) => {
                     <Filter setActive={setActive} active={active} alph={alph} setAlph={setAlph} visible={visible} setVisible={setVisible} />
                     <div className="mr-mobile sm:mr-tablet w-full">
                         <div className="w-full flex flex-col">
-                            <div className="grid grid-cols-2  xl:grid-cols-4 lg:gap-10 xl:gap-3 grid-rows-2 w-full">
+                            <div className="grid grid-cols-1 sm:grid-cols-2  xl:grid-cols-4 lg:gap-10 xl:gap-3 grid-rows-2 w-full">
                                 {filteredItems?.length > 0 && (
                                     renderFilteredItems(filteredItems)
                                 )}
