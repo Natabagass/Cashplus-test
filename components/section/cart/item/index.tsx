@@ -7,15 +7,17 @@ import { rupiahFormatter } from "@/utils/rupiahFormatter";
 import Button from "@/button";
 import Swal from "sweetalert2";
 import postCart from "@/features/service/data/postCart";
+import { useRouter } from "next/router";
 
 const CartList = () => {
-    const { cartDatas } = useContext(CartContext)
+    const { cartDatas, dispatch } = useContext(CartContext)
     const token = getCookie('auth')
+    const router = useRouter()
 
     const subtotal = useMemo(() => {
         let total = 0
 
-        cartDatas.map((data: any) => {
+        cartDatas?.map((data: any) => {
             total += data.price * data.count
         })
 
@@ -26,7 +28,7 @@ const CartList = () => {
         // also check amount of fruit
         let ids: number[] = []
 
-        cartDatas.forEach((data: any) => {
+        cartDatas?.forEach((data: any) => {
             for(let i = 0; i < data.count; i++) {
                 ids.push(data.id)
             }
@@ -50,12 +52,17 @@ const CartList = () => {
         const res = await postCart(1, 'bca', fruitIds)
 
         if (res.status === 200) {
+            dispatch({
+                type: 'remove_all_item_from_cart'
+            })
             Swal.fire({
                 position: 'center',
                 icon: 'success',
                 title: 'Transaksi Berhasil',
                 showConfirmButton: false,
                 timer: 1500
+            }).then(() => {
+                router.push('/history')
             })
             return
         } else {
