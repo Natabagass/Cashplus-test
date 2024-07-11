@@ -3,6 +3,7 @@ import "@/globals.css"
 import { Layout } from "@/layout"
 import type { AppProps } from 'next/app'
 import Head from "next/head";
+import NextjsProgressbar from "nextjs-progressbar";
 import { QueryClient, QueryClientProvider } from 'react-query';
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
       <CartProvider>
         <QueryClientProvider client={queryClient}>
           <Layout>
+            <NextjsProgressbar options={{ showSpinner: false }} color="#F7982D"/>
             <Component {...pageProps} />
           </Layout>
         </QueryClientProvider>
