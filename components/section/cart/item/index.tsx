@@ -1,5 +1,5 @@
 import CartCard from "../card";
-import { useContext, useMemo } from "react";
+import { useContext, useMemo, useState } from "react";
 import { CartContext } from "@/context/cartContext";
 import { getCookie } from "cookies-next";
 import Link from "next/link";
@@ -10,6 +10,7 @@ import postCart from "@/features/service/data/postCart";
 import { useRouter } from "next/router";
 
 const CartList = () => {
+    const [isLoadingScreen, setIsLoadingScreen] = useState(false)
     const { cartDatas, dispatch } = useContext(CartContext)
     const token = getCookie('auth')
     const router = useRouter()
@@ -23,13 +24,13 @@ const CartList = () => {
 
         return total
     }, [cartDatas])
-    
+
     const fruitIds = useMemo(() => {
         // also check amount of fruit
         let ids: number[] = []
 
         cartDatas?.forEach((data: any) => {
-            for(let i = 0; i < data.count; i++) {
+            for (let i = 0; i < data.count; i++) {
                 ids.push(data.id)
             }
         });
@@ -38,6 +39,7 @@ const CartList = () => {
     }, [cartDatas])
 
     const onBuyItems = async () => {
+        setIsLoadingScreen(true)
         if (!token) {
             Swal.fire({
                 position: 'center',
@@ -55,6 +57,7 @@ const CartList = () => {
             dispatch({
                 type: 'remove_all_item_from_cart'
             })
+            setIsLoadingScreen(false)
             Swal.fire({
                 position: 'center',
                 icon: 'success',
@@ -64,9 +67,9 @@ const CartList = () => {
             }).then(() => {
                 router.push('/history')
             })
-            return
         } else {
             console.log(res)
+            setIsLoadingScreen(false)
             const errorMessage = Object.keys(res?.response.data.message)
                 .map((key) => res?.response.data?.message[key][0])
                 .join(', ')
@@ -79,6 +82,18 @@ const CartList = () => {
                 showConfirmButton: true,
             })
         }
+    }
+
+    if (isLoadingScreen) {
+        Swal.fire({
+            position: 'center',
+            icon: 'question',
+            title: 'Transaksi sedang diproses',
+            showConfirmButton: false,
+            didOpen: () => {
+                Swal.showLoading()
+            }
+        })
     }
 
     return (
