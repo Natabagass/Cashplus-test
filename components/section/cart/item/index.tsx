@@ -65,7 +65,7 @@ const CartList = () => {
                 showConfirmButton: false,
                 timer: 1500
             }).then(() => {
-                router.push('/history')
+                router.push('/payment')
             })
         } else {
             console.log(res)
