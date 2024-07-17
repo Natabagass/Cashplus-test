@@ -8,7 +8,7 @@ const add_to_cart = (state:any, cartItem:Props) => {
     const newArray = [...state]
 
     if (index === -1)
-        newArray.push({ count: 1, ...cartItem })
+        newArray.push({ ...cartItem })
     else {
         newArray[index].count += 1
     }

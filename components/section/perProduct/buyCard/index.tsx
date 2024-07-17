@@ -1,24 +1,15 @@
 import Button from "@/button"
 import { CartContext } from "@/context/cartContext"
 import postBuy from "@/features/service/data/postBuy"
-import { Props, PropsKategori } from "@/interface/data/fruit"
+import { Props } from "@/interface/data/fruit"
 import { rupiahFormatter } from "@/utils/rupiahFormatter"
-import { HiOutlineShoppingCart } from "react-icons/hi"
-import {AiOutlinePlus, AiOutlineMinus} from "react-icons/ai"
 import { getCookie } from "cookies-next"
 import { useRouter } from "next/router"
-import { useState, useEffect, useContext, useMemo } from "react"
+import { useState, useEffect, useContext } from "react"
 import Swal from "sweetalert2"
 
 const BuyCard = (props: Props) => {
-    const { cartDatas, dispatch } = useContext(CartContext)
-
-    const addToCart = () => {
-        dispatch({
-            type: 'add_to_cart',
-            value: props
-        })
-    }
+    const { dispatch } = useContext(CartContext)
 
     const router = useRouter()
     const token = getCookie('auth')
@@ -30,6 +21,17 @@ const BuyCard = (props: Props) => {
         bank: 'bca',
         product_id: props.id
     })
+    
+    const addToCart = () => {
+        console.log(props)
+        dispatch({
+            type: 'add_to_cart',
+            value: {
+                ...props,
+                count: quantity || 1
+            }
+        })
+    }
 
     useEffect(() => {
         setSum(quantity * props.price)
