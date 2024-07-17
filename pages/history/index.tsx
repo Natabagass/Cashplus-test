@@ -7,8 +7,10 @@ import { useEffect, useState } from "react";
 
 const History = () => {
     const [history, setHistory] = useState<{ data: receipt[] }>({ data: [] })
+    const [isLoading, setIsLoading] = useState(false);
 
-    const getHistory = async() => {
+    const getHistory = async () => {
+        setIsLoading(true)
         try {
             const res = await getHistoryData()
             if (res.status === 200) {
@@ -17,6 +19,8 @@ const History = () => {
             }
         } catch (error) {
             console.error(error)
+        } finally {
+            setIsLoading(false)
         }
     }
 
@@ -40,20 +44,25 @@ const History = () => {
             />
             <section id="history">
                 {
-                    history?.data?.length === 0 ?
-                    <div className="mt-32 w-full grid place-items-center">
-                        <span className="flex items-center gap-3">
-                            retrieving your data...
-                            <Image 
-                                src="/icon/icon-loading.svg" 
-                                alt="loading"
-                                width={24}
-                                height={24}
+                    isLoading ?
+                        <div className="mt-32 w-full grid place-items-center">
+                            <span className="flex items-center gap-3">
+                                retrieving your data...
+                                <Image
+                                    src="/icon/icon-loading.svg"
+                                    alt="loading"
+                                    width={24}
+                                    height={24}
                                 />
-                        </span>
-                    </div>
+                            </span>
+                        </div>
                         :
-                    <TemplateHistory data={history} />
+                        history?.data?.length !== 0 ?
+                            <TemplateHistory data={history} />
+                            :
+                            <div className="min-h-screen w-full grid place-items-center">
+                                <>History transaksi tidak ditemukan</>
+                            </div>
                 }
             </section>
         </>

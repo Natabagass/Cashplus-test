@@ -13,6 +13,7 @@ const CardHistory = (props: receipt) => {
                     </div>
                     <div className="flex flex-col">
                         <h1 className="font-bold text-base mobile:text-lg sm:text-xl">{props.product.name}</h1>
+                        <p>amount : {props.amount}</p>
                         <h1 className="text-lg mobile:text-xl sm:text-3xl mt-3 font-bold">{rupiahFormatter(props.gross_amount)}</h1>
                     </div>
                     <h1 className="text-sm sm:text-lg font-semibold">Virtual Account : &nbsp; {props.payment_info}</h1>
